@@ -64,7 +64,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $data = ['project' => $project];
+        return view('admin.project.edit', $data);
     }
 
     /**
@@ -72,7 +73,21 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+        $project->name = $data['name'];
+        $project->description = $data['description'];
+        $project->start_date = $data['start_date'];
+        if (empty($data['end_date'])) {
+            $project->status = 0;
+        } else {
+            $project->end_date = $data['end_date'];
+            $project->status = 1;
+        }
+
+        $project->save();
+
+        return redirect()->route('admin.project.show', $project);
     }
 
     /**

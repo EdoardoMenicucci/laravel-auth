@@ -16,7 +16,9 @@
 							<div class="red fw-bold">Non Completato</div>
 						@endif
 						<div class="d-flex justify-content-between">
-							<div><button class="btn btn-warning">Modifica</button></div>
+							<a href="{{ route('admin.project.edit', $project) }}">
+								<div><button class="btn btn-warning">Modifica</button></div>
+							</a>
 							<div><button class="btn btn-danger">Elimina</button></div>
 							<a href="{{ route('admin.project.index') }}">
 								<div><button class="btn btn-primary">Torna alla lista</button></div>
