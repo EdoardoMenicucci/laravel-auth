@@ -17,7 +17,18 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
         $data = ['projects' => $projects];
-        return view('admin.project.index', $data);
+        $user = Auth::user();
+
+        if ($user) {
+            return view('admin.project.index', $data);
+        } else {
+            // L'utente non è loggato
+            return view('project.index', $data);
+        }
+
+
+        
+        
     }
 
     /**
