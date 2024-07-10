@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -56,6 +57,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $data = ['project' => $project];
+
         return view('admin.project.show', $data);
     }
 
@@ -95,8 +97,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-    $project->delete();
+        $project->delete();
 
-    return redirect()->route('admin.project.index');
+        return redirect()->route('admin.project.index');
     }
 }
