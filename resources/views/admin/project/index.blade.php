@@ -22,12 +22,6 @@
 			@endforeach
 		</div>
 
-		<a href="{{ route('admin.project.create') }}">
-			<button id="addProject" class="btn btn-primary">
-				<p>Aggiungi</p>
-				<p>Progetto</p>			
-		</button></a>
-		
 	</div>
 	</div>
 @endsection
