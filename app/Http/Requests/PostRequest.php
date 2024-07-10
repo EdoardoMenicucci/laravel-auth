@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
             "name" => ["required", "min:5", "max:50"],
             "description" => ["required", "min:5", "max:300"],
             "category_id" => ["nullable", "exists:categories,id"],
-            "tags" => ["exists:tags,id"],
+            "tags" => ["exists:tags,id"]
         ];
     }
 }
