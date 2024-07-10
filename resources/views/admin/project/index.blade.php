@@ -1,4 +1,10 @@
+{{-- @if (Auth::user()) --}}
 @extends('layouts.admin')
+{{-- @else
+	@extends('layouts.app')
+@endif --}}
+
+
 
 @section('content')
 	<div class="container-fluid mt-4">

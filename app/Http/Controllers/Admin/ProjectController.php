@@ -17,18 +17,13 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
         $data = ['projects' => $projects];
-        $user = Auth::user();
+        //$user = Auth::user();
 
-        if ($user) {
-            return view('admin.project.index', $data);
-        } else {
-            // L'utente non è loggato
-            return view('project.index', $data);
-        }
-
-
-        
-        
+        // if ($user) {
+        return view('admin.project.index', $data);
+        // } else {
+        //     return view('welcome', $data);
+        // }
     }
 
     /**
@@ -109,10 +104,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-<<<<<<< HEAD
-=======
-
->>>>>>> main
         return redirect()->route('admin.project.index');
     }
 }

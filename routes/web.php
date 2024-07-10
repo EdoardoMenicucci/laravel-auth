@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
 use App\Http\Controllers\Admin\ProjectController;
+use App\Models\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,14 @@ use App\Http\Controllers\Admin\ProjectController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $projects = Project::all();
+    $data = ['projects' => $projects];
+    return view('welcome', $data);
 });
 
-Route::resource('project', ProjectController::class)->only([
-    'index', 'show'
-]);
+// Route::resource('project', ProjectController::class)->only([
+//     'index', 'show'
+// ]);
 
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
