@@ -32,13 +32,18 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $data = ['request' => $request];
+        $data = $request->all();
 
         $newProject = new Project();
         $newProject->name = $data['name'];
         $newProject->description = $data['description'];
         $newProject->start_date = $data['start_date'];
-        $newProject->end_date = $data['end_date'];
+        if (empty($data['end_date'])) {
+            $newProject->status = 0;
+        } else {
+            $newProject->end_date = $data['end_date'];
+            $newProject->status = 1;
+        }
 
         $newProject->save();
 
