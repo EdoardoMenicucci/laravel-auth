@@ -17,7 +17,11 @@
 						@endif
 						<div class="d-flex justify-content-between">
 							<div><button class="btn btn-warning">Modifica</button></div>
-							<div><button class="btn btn-danger">Elimina</button></div>
+							<form action="{{ route('admin.project.destroy', $project) }}" method="POST">
+								@csrf
+								@method('DELETE')
+								<div><button type="submit" class="btn btn-danger">Elimina</button></div>
+							</form>
 							<a href="{{ route('admin.project.index') }}">
 								<div><button class="btn btn-primary">Torna alla lista</button></div>
 							</a>
