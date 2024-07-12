@@ -22,6 +22,8 @@
 							@else
 								<div class="red fw-bold">Non Completato</div>
 							@endif
+							<div>Tipo: {{ $project->type->name }}</div>
+							<div><i class="{{ $project->type->icon }} fa-2x"></i></div>
 						</div>
 					</div>
 				</div>
