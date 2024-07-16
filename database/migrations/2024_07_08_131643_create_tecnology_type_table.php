@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tecnologies', function (Blueprint $table) {
+        Schema::create('tecnology_type', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+
+            $table->unsignedBigInteger('tecnology_id');
+            $table->unsignedBigInteger('type_id');
+
             $table->timestamps();
+
+            $table->foreign('tecnology_id')->references('id')->on('tecnologies');
+            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tecnologies');
+        Schema::dropIfExists('tecnology_type');
     }
 };
