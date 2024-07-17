@@ -4,11 +4,16 @@
 	<div class="container mt-5">
 		<h2>Crea nuovo progetto</h2>
 
-		<form action="{{ route('admin.project.store') }}" method="POST">
+		<form action="{{ route('admin.project.store') }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			<div class="form-group">
 				<label for="name">Name:</label>
 				<input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+			</div>
+
+			<div class="form-group mt-3">
+				<label for="img">Image:</label>
+				<input type="file" name="img" id="img" class="form-control mt-3">
 			</div>
 
 			<div class="form-group mt-3">

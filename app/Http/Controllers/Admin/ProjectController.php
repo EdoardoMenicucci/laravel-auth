@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class ProjectController extends Controller
 {
@@ -45,6 +48,13 @@ class ProjectController extends Controller
         $newProject->name = $data['name'];
         $newProject->description = $data['description'];
         $newProject->start_date = $data['start_date'];
+
+        if ($request->has('img')) {
+            // Salvo l'immagine nella cartella public/uploads
+            $image_path = Storage::put('uploads', $request->img);
+            $newProject->img = $image_path;
+        }
+
         if (empty($data['end_date'])) {
             $newProject->status = 0;
         } else {
@@ -86,6 +96,18 @@ class ProjectController extends Controller
         $project->name = $data['name'];
         $project->description = $data['description'];
         $project->start_date = $data['start_date'];
+
+        if ($request->has('img')) {
+            // Salvo l'immagine nella cartella public/uploads
+            $image_path = Storage::put('uploads', $request->img);
+            $project->img = $image_path;
+
+            if ($project->img && !Str::start($project->img, 'http')) {
+                //Elimino dalla cartella public la vecchia immagine se esiste
+                Storage::delete($project->img);
+            }
+        }
+
         if (empty($data['end_date'])) {
             $project->status = 0;
         } else {
@@ -103,6 +125,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->img && !Str::start($project->img, 'http')) {
+            //Elimino dalla cartella public la vecchia immagine se esiste
+            Storage::delete($project->img);
+        }
         $project->delete();
         return redirect()->route('admin.project.index');
     }

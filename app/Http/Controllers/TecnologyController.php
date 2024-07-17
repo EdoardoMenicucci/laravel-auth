@@ -12,7 +12,9 @@ class TecnologyController extends Controller
      */
     public function index()
     {
-        //
+        //$tecnologies = Tecnology::all();
+        //$data = ['tecnologies' => $tecnologies];
+        //return view('tecnology.index', $data);
     }
 
     /**
@@ -20,7 +22,7 @@ class TecnologyController extends Controller
      */
     public function create()
     {
-        //
+        //return view('tecnology.create');
     }
 
     /**
@@ -28,7 +30,12 @@ class TecnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //    $data = $request->all();
+        //    $newTecnology = new Tecnology();
+        //    $newTecnology->name = $data['name'];
+        //    $newTecnology->description = $data['description'];
+        //    $newTecnology->save();
+        //    return redirect()->route('tecnology.show', $newTecnology);
     }
 
     /**
@@ -36,7 +43,7 @@ class TecnologyController extends Controller
      */
     public function show(Tecnology $tecnology)
     {
-        //
+        //    return view('tecnology.show', compact('tecnology'));
     }
 
     /**
@@ -44,7 +51,7 @@ class TecnologyController extends Controller
      */
     public function edit(Tecnology $tecnology)
     {
-        //
+        //    return view('tecnology.edit', compact('tecnology'));  
     }
 
     /**
@@ -52,7 +59,9 @@ class TecnologyController extends Controller
      */
     public function update(Request $request, Tecnology $tecnology)
     {
-        //
+        //    $data = $request->all();
+        //    $tecnology->update($data);
+        //    return redirect()->route('tecnology.show', $tecnology);
     }
 
     /**
@@ -60,6 +69,7 @@ class TecnologyController extends Controller
      */
     public function destroy(Tecnology $tecnology)
     {
-        //
+        //    $tecnology->delete();
+        //    return redirect()->route('tecnology.index');
     }
 }

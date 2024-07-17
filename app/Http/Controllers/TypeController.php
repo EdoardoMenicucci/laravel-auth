@@ -12,7 +12,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        // $types = Type::all();
+        // $data = ['types' => $types];
+        // return view('type.index', $data);
     }
 
     /**
@@ -20,7 +22,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        //    return view('type.create');
     }
 
     /**
@@ -28,7 +30,12 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //    $data = $request->all();
+        //    $newType = new Type();
+        //    $newType->name = $data['name'];
+        //    $newType->description = $data['description'];
+        //    $newType->save();
+        //    return redirect()->route('type.show', $newType);
     }
 
     /**
@@ -36,7 +43,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        //    return view('type.show', compact('type'));
     }
 
     /**
@@ -44,7 +51,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        //    return view('type.edit', compact('type'));
     }
 
     /**
@@ -52,7 +59,7 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        // 
     }
 
     /**
@@ -60,6 +67,6 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        //    $type->delete(); 
     }
 }

@@ -4,12 +4,25 @@
 	<div class="container mt-5">
 		<h2>Stai modificando: {{ $project->name }}</h2>
 
-		<form action="{{ route('admin.project.update', $project) }}" method="POST">
+		<form action="{{ route('admin.project.update', $project) }}" method="POST" enctype="multipart/form-data">
 			@method('PUT')
 			@csrf
 			<div class="form-group">
 				<label for="name">Name:</label>
 				<input type="text" class="form-control" id="name" name="name" value="{{ $project->name }}" required>
+			</div>
+
+			@if (Str::startsWith($project->img, 'http'))
+				<div class="form-group mt-3">
+					<img src="{{ $project->img }}" alt="">
+				</div>
+			@else
+				<div class="form-group mt-3">
+					<img src="{{ asset('storage/' . $project->img) }}" alt="">
+				</div>
+			@endif
+			<div class="form-group mt-3">
+				<input type="file" name="img" id="img" class="form-control mt-3">
 			</div>
 
 			<div class="form-group mt-3">
