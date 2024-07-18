@@ -13,6 +13,7 @@ class ProjectController extends Controller
     {
         return response()->json([
             'success' => true,
+            //::whit('technologies','type') se vuoi importare anche i collegamenti alle altre tabelle del database EAGER LOADING
             'projects' => Project::orderByDesc('id')->paginate(10)
         ]);
     }
