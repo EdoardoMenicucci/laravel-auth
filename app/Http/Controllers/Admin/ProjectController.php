@@ -102,7 +102,7 @@ class ProjectController extends Controller
             $image_path = Storage::put('uploads', $request->img);
             $project->img = $image_path;
 
-            if ($project->img && !Str::start($project->img, 'http')) {
+            if ($project->img && !Str::startsWith($project->img, 'http')) {
                 //Elimino dalla cartella public la vecchia immagine se esiste
                 Storage::delete($project->img);
             }
@@ -125,7 +125,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        if ($project->img && !Str::start($project->img, 'http')) {
+        if ($project->img && !Str::startsWith($project->img, 'http')) {
             //Elimino dalla cartella public la vecchia immagine se esiste
             Storage::delete($project->img);
         }
