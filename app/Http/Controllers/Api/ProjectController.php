@@ -16,8 +16,16 @@ class ProjectController extends Controller
 
         return response()->json([
             'success' => true,
-            //::whit('technologies','type') se vuoi importare anche i collegamenti alle altre tabelle del database EAGER LOADING
+            //::with('technologies','type') se vuoi importare anche i collegamenti alle altre tabelle del database EAGER LOADING
             'projects' => $projects
+        ]);
+    }
+
+    public function show(Project $project)
+    {
+        return response()->json([
+            'success' => true,
+            'project' => $project->with('type')->where('id', $project->id)->first()
         ]);
     }
 }
