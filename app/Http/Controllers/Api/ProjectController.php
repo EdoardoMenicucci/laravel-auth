@@ -21,11 +21,19 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function show(Project $project)
+    public function show($id)
     {
-        return response()->json([
-            'success' => true,
-            'project' => $project->with('type')->where('id', $project->id)->first()
-        ]);
+        $project = Project::with('type')->where('id', $id)->first();
+        if ($project) {
+            return response()->json([
+                'success' => true,
+                'project' => $project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Project not found'
+            ]);
+        }
     }
 }
